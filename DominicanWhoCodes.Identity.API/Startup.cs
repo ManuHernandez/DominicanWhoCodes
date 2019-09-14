@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using DominicanWhoCodes.Identity.API.Models;
+using DominicanWhoCodes.Identity.API.TokenAuth;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace DominicanWhoCodes.Identity.API
 {
@@ -36,6 +32,25 @@ namespace DominicanWhoCodes.Identity.API
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryPersistedGrants()
+                .AddInMemoryIdentityResources(IdentityServerTokenConfig.GetIdentityResources())
+                .AddInMemoryApiResources(IdentityServerTokenConfig.GetApiResources())
+                .AddInMemoryClients(IdentityServerTokenConfig.GetClients())
+                .AddAspNetIdentity<User>();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = Configuration["IdentityServerSettings:Authority"];
+                options.Audience = "apiv1";
+                options.RequireHttpsMetadata = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +65,7 @@ namespace DominicanWhoCodes.Identity.API
                 app.UseHsts();
             }
 
+            app.UseIdentityServer();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
