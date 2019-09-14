@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DominicanWhoCodes.Identity.API.Models
 {
-    public class User : IdentityUser<Guid>, IUser
+    public class User : IdentityUser, IUser
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Guid UserId { get { return base.Id; } }
+        public Guid UserId { get { return Guid.Parse(base.Id); } }
     }
 }
