@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace DominicanWhoCodes.Identity.Gateway
 {
@@ -13,6 +14,8 @@ namespace DominicanWhoCodes.Identity.Gateway
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            .ConfigureAppConfiguration((host, config) => {
+                config.AddJsonFile("ocelot_configuration.json");
+            }).UseStartup<Startup>();
     }
 }
