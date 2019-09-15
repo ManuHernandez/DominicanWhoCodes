@@ -44,8 +44,12 @@ namespace DominicanWhoCodes.Identity.API.TokenAuth
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.Address,
-                        "apiv1"
-                    }
+                        "Grant Access"
+                    },
+                    AccessTokenLifetime = 3600,
+                    RefreshTokenExpiration  = TokenExpiration.Sliding,
+                    RefreshTokenUsage = TokenUsage.OneTimeOnly,
+                    AllowOfflineAccess = true
                 }
             };
         }
