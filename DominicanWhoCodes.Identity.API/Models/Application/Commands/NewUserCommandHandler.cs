@@ -62,9 +62,9 @@ namespace DominicanWhoCodes.Identity.API.Models.Application.Commands
         {
             string defaultRole = "Basic";
 
-            bool existRole = await _roleManager.FindByNameAsync(defaultRole) != null;
+            bool existsRole = await _roleManager.FindByNameAsync(defaultRole) != null;
 
-            if (!existRole) await _roleManager.CreateAsync(new IdentityRole(defaultRole));
+            if (!existsRole) await _roleManager.CreateAsync(new IdentityRole(defaultRole));
 
             return defaultRole;
         }
@@ -79,7 +79,8 @@ namespace DominicanWhoCodes.Identity.API.Models.Application.Commands
                 userEntity.LastName));
             await _userManager.AddClaimAsync(userEntity, new Claim("email", 
                 userEntity.Email));
-            await _userManager.AddClaimAsync(userEntity, new Claim("role", roleName));
+            await _userManager.AddClaimAsync(userEntity, new Claim("role", 
+                roleName));
         }
 
     }
