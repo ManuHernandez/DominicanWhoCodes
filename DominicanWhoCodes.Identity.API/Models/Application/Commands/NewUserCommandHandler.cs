@@ -73,16 +73,12 @@ namespace DominicanWhoCodes.Identity.API.Models.Application.Commands
         {
             await _userManager.AddClaimAsync(userEntity, new Claim("userName", 
                 userEntity.UserName));
-
             await _userManager.AddClaimAsync(userEntity, new Claim("firstName", 
                 userEntity.FirstName));
-
             await _userManager.AddClaimAsync(userEntity, new Claim("lastName", 
                 userEntity.LastName));
-
             await _userManager.AddClaimAsync(userEntity, new Claim("email", 
                 userEntity.Email));
-
             await _userManager.AddClaimAsync(userEntity, new Claim("role", roleName));
         }
 
