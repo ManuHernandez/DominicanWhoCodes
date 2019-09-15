@@ -55,17 +55,6 @@ namespace DominicanWhoCodes.Identity.API
                 .AddInMemoryApiResources(IdentityServerTokenConfig.GetApiResources())
                 .AddInMemoryClients(IdentityServerTokenConfig.GetClients())
                 .AddAspNetIdentity<User>();
-
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.Authority = Configuration["IdentityServerSettings:Authority"];
-                options.Audience = "apiv1";
-                options.RequireHttpsMetadata = false;
-            });
         }
 
         private void ConfigureSwagger(IServiceCollection services)

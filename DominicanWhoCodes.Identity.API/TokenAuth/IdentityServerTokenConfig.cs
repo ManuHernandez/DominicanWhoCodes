@@ -22,7 +22,7 @@ namespace DominicanWhoCodes.Identity.API.TokenAuth
         {
             return new List<ApiResource>
             {
-                new ApiResource("apiv1", "DominicanWhoCodesIdentityAPI")
+                new ApiResource("WebApp", "DominicanWhoCodesIdentityAPI")
             };
         }
 
@@ -32,7 +32,7 @@ namespace DominicanWhoCodes.Identity.API.TokenAuth
             {
                 new Client
                 {
-                    ClientId = "DominicanWhoCodes.Blazor",
+                    ClientId = "DominicanWhoCodes.WebApps",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
 
                     ClientSecrets =
@@ -44,12 +44,12 @@ namespace DominicanWhoCodes.Identity.API.TokenAuth
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.Address,
-                        "Grant Access"
+                        "WebApp"
                     },
-                    AccessTokenLifetime = 3600,
-                    RefreshTokenExpiration  = TokenExpiration.Sliding,
+                    AllowOfflineAccess = true,
+                    RefreshTokenExpiration = TokenExpiration.Sliding,
                     RefreshTokenUsage = TokenUsage.OneTimeOnly,
-                    AllowOfflineAccess = true
+                    AccessTokenLifetime = 3600
                 }
             };
         }
