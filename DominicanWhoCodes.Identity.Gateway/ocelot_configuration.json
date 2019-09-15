@@ -3,56 +3,24 @@
     {
       "DownstreamPathTemplate": "/api/{ACCOUNT}",
       "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 44338
-        },
-        {
-          "Host": "localhost",
-          "Port": 5001
-        }
-      ],
-      "UpstreamPathTemplate": "/customer-api/{ACCOUNT}",
-      "LoadBalancer": "RoundRobin",
+      "ServiceName": "Identity",
+      "UpstreamPathTemplate": "/identity/{ACCOUNT}",
       "UpstreamHttpMethod": [ "POST" ],
       "QoSOptions": {
         "ExceptionsAllowedBeforeBreaking": 5,
         "DurationOfBreak": 2000,
         "TimeoutValue": 5000
-      }
-    },
-    {
-      "DownstreamPathTemplate": "/connect/{OAUTH}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 44338
-        },
-        {
-          "Host": "localhost",
-          "Port": 5001
-        },
-      ],
-      "UpstreamPathTemplate": "/auth-api/{OAUTH}",
-      "LoadBalancer":  "RoundRobin",
-      "UpstreamHttpMethod": [ "POST" ],
-      "RateLimitOptions": {
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1s",
-        "PeriodTimespan": 1,
-        "Limit": 10
       },
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 5,
-        "DurationOfBreak": 2000,
-        "TimeoutValue": 3000
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
       }
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:44355"
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    }
   }
 }

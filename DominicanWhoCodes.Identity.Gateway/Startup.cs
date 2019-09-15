@@ -12,6 +12,7 @@ using Ocelot.Administration;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Provider.Polly;
+using Ocelot.Provider.Consul;
 
 namespace DominicanWhoCodes.Identity.Gateway
 {
@@ -30,7 +31,8 @@ namespace DominicanWhoCodes.Identity.Gateway
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddOcelot(Configuration)
-                .AddPolly();
+                .AddPolly()
+                .AddConsul();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

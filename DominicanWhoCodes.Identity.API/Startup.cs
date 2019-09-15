@@ -16,7 +16,9 @@ using Microsoft.AspNetCore.Rewrite;
 using System.IO;
 using System;
 using System.Collections.Generic;
-
+using DominicanWhoCodes.Shared.ServiceDiscovery;
+using System.Linq;
+using IdentityServer4.Hosting;
 
 namespace DominicanWhoCodes.Identity.API
 {
@@ -32,6 +34,8 @@ namespace DominicanWhoCodes.Identity.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureConsul(services);
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
 
@@ -40,6 +44,8 @@ namespace DominicanWhoCodes.Identity.API
 
             ConfigureAuth(services);
             ConfigureSwagger(services);
+
+            services.AddHealthChecks();
         }
 
         private void ConfigureAuth(IServiceCollection services)
@@ -48,13 +54,20 @@ namespace DominicanWhoCodes.Identity.API
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-            services.AddIdentityServer()
+            var builder = services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 .AddInMemoryPersistedGrants()
                 .AddInMemoryIdentityResources(IdentityServerTokenConfig.GetIdentityResources())
                 .AddInMemoryApiResources(IdentityServerTokenConfig.GetApiResources())
                 .AddInMemoryClients(IdentityServerTokenConfig.GetClients())
                 .AddAspNetIdentity<User>();
+
+            //Nice hack : https://stackoverflow.com/questions/39186533/change-default-endpoint-in-identityserver-4 :')
+            builder.Services
+            .Where(service => service.ServiceType == typeof(Endpoint))
+            .Select(item => (Endpoint)item.ImplementationInstance)
+            .ToList()
+            .ForEach(item => item.Path = item.Path.Value.Replace("/connect", "/api"));
         }
 
         private void ConfigureSwagger(IServiceCollection services)
@@ -72,6 +85,12 @@ namespace DominicanWhoCodes.Identity.API
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 config.IncludeXmlComments(xmlPath);
             });
+        }
+
+        private void ConfigureConsul(IServiceCollection services)
+        {
+            var serviceCfg = Service.GetService(Configuration);
+            services.RegisterConsulServices(serviceCfg);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,9 +111,11 @@ namespace DominicanWhoCodes.Identity.API
                 config.SwaggerEndpoint("/swagger/v1/swagger.json", "IdentityAPIv1");
                 config.RoutePrefix = "swagger";
             });
+
             app.UseIdentityServer();
             app.UseHttpsRedirection();
 
+            app.UseHealthChecks("/heathcheck");
             app.UseMvc();
         }
     }
