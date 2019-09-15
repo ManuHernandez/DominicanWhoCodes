@@ -1,4 +1,5 @@
 ﻿
+using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,13 +25,16 @@ namespace DominicanWhoCodes.Identity.API.Models.Application.Commands
 
             ValidateUserData(userEntity);
 
-            var result = await _userManager.CreateAsync(userEntity, userEntity.PasswordHash);
+            var result = await _userManager.CreateAsync(userEntity, request.NewUser.Password);
 
             if (result.Succeeded)
             {
                 var roleName = await AddUserToDefaultRole();
                 await AddClaims(userEntity, roleName);
             }
+            else
+                throw new UserPasswordInvalidException(result.Errors?
+                    .FirstOrDefault()?.Description);
 
             return result.Succeeded;
         }
@@ -41,7 +45,8 @@ namespace DominicanWhoCodes.Identity.API.Models.Application.Commands
             {
                 FirstName = request.NewUser.FirstName,
                 LastName = request.NewUser.LastName,
-                Email = request.NewUser.Email
+                Email = request.NewUser.Email,
+                UserName = request.NewUser.Email
             };
         }
 

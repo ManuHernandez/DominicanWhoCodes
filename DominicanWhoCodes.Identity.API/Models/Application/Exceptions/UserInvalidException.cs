@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace DominicanWhoCodes.Identity.API.Models.Application.Exceptions
 {
     [Serializable]
-    internal class UserInvalidException : Exception
+    internal class UserInvalidException : UserException
     {
         public UserInvalidException()
         {

@@ -11,6 +11,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Rewrite;
+using System.IO;
+using System;
+using System.Collections.Generic;
+
 
 namespace DominicanWhoCodes.Identity.API
 {
@@ -32,9 +38,15 @@ namespace DominicanWhoCodes.Identity.API
             services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("IdentityDb")));
 
+            ConfigureAuth(services);
+            ConfigureSwagger(services);
+        }
+
+        private void ConfigureAuth(IServiceCollection services)
+        {
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
@@ -56,6 +68,23 @@ namespace DominicanWhoCodes.Identity.API
             });
         }
 
+        private void ConfigureSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(config =>
+            {
+                config.SwaggerDoc("v1", new Info {
+                    Title = "Identity API",
+                    Version = "v1",
+                    Description = "An API to manage users authentication and authorization " +
+                    "of DominicanWhoCodes App"
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                config.IncludeXmlComments(xmlPath);
+            });
+        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -68,8 +97,15 @@ namespace DominicanWhoCodes.Identity.API
                 app.UseHsts();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(config =>
+            {
+                config.SwaggerEndpoint("/swagger/v1/swagger.json", "IdentityAPIv1");
+                config.RoutePrefix = "swagger";
+            });
             app.UseIdentityServer();
             app.UseHttpsRedirection();
+
             app.UseMvc();
         }
     }
