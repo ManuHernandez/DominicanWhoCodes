@@ -10,6 +10,17 @@ namespace DominicanWhoCodes.Identity.API.Models
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<User>(model =>
+            {
+                model.Property(e => e.FirstName).IsRequired().HasMaxLength(80);
+                model.Property(e => e.LastName).IsRequired().HasMaxLength(250);
+                model.Property(e => e.Email).IsRequired();
+            });
+            base.OnModelCreating(builder);
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
