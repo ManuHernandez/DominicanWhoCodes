@@ -37,7 +37,7 @@ namespace DominicanWhoCodes.Identity.API.Controllers
             {
                 return BadRequest(userEx.Message);
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
