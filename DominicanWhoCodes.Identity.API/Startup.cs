@@ -65,7 +65,6 @@ namespace DominicanWhoCodes.Identity.API
                 options.Authority = Configuration["IdentityServerSettings:Authority"];
                 options.Audience = "apiv1";
                 options.RequireHttpsMetadata = false;
-                options.exp
             });
         }
 
