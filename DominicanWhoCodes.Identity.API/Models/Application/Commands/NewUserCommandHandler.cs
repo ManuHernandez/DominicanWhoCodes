@@ -36,7 +36,7 @@ namespace DominicanWhoCodes.Identity.API.Models.Application.Commands
                 throw new UserPasswordInvalidException(result.Errors?
                     .FirstOrDefault()?.Description);
 
-            return result.Succeeded;
+            return true;
         }
 
         private User TransformToUserEntity(NewUserCommand request)
