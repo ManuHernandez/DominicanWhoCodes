@@ -7,13 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes", "Domini
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{74267283-A4CF-4D6C-8D32-251067A9DAFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DominicanWhoCodes.Identity.API", "..\DominicanWhoCodes.Identity.API\DominicanWhoCodes.Identity.API.csproj", "{80FAB7C8-E387-4804-97E9-40A6778FED01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Identity.API", "..\DominicanWhoCodes.Identity.API\DominicanWhoCodes.Identity.API.csproj", "{80FAB7C8-E387-4804-97E9-40A6778FED01}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{DE698D29-B4F4-44BA-9253-ADDD6021F12F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DominicanWhoCodes.Shared", "..\DominicanWhoCodes.Shared\DominicanWhoCodes.Shared.csproj", "{AC2B2DBE-81A9-4EE3-BA57-6CF22AC338F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Shared", "..\DominicanWhoCodes.Shared\DominicanWhoCodes.Shared.csproj", "{AC2B2DBE-81A9-4EE3-BA57-6CF22AC338F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DominicanWhoCodes.Identity.Gateway", "..\DominicanWhoCodes.Identity.Gateway\DominicanWhoCodes.Identity.Gateway.csproj", "{DF391EDF-CD89-44E3-A93F-48B2376BFFE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Identity.Gateway", "..\DominicanWhoCodes.Identity.Gateway\DominicanWhoCodes.Identity.Gateway.csproj", "{DF391EDF-CD89-44E3-A93F-48B2376BFFE6}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F7A1EB7C-DDBF-4690-A8EA-1379D6517A91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{DF391EDF-CD89-44E3-A93F-48B2376BFFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF391EDF-CD89-44E3-A93F-48B2376BFFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF391EDF-CD89-44E3-A93F-48B2376BFFE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A1EB7C-DDBF-4690-A8EA-1379D6517A91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A1EB7C-DDBF-4690-A8EA-1379D6517A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A1EB7C-DDBF-4690-A8EA-1379D6517A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A1EB7C-DDBF-4690-A8EA-1379D6517A91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
