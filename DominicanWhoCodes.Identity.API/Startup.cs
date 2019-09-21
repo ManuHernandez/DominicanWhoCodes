@@ -112,11 +112,22 @@ namespace DominicanWhoCodes.Identity.API
                 config.RoutePrefix = "swagger";
             });
 
+            MigrateDb(app);
+
             app.UseIdentityServer();
             app.UseHttpsRedirection();
 
             app.UseHealthChecks("/heathcheck");
             app.UseMvc();
+        }
+
+        public void MigrateDb(IApplicationBuilder app)
+        {
+            using (var dbService = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = dbService.ServiceProvider.GetService<ApplicationDbContext>();
+                if (dbContext != null) dbContext.Database.Migrate();
+            }
         }
     }
 }

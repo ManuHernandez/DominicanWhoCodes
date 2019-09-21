@@ -2,7 +2,7 @@
   "ReRoutes": [
     {
       "DownstreamPathTemplate": "/api/{ACCOUNT}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "ServiceName": "Identity",
       "UpstreamPathTemplate": "/identity/{ACCOUNT}",
       "UpstreamHttpMethod": [ "POST" ],
@@ -18,7 +18,7 @@
   ],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {
-      "Host": "localhost",
+      "Host": "consul",
       "Port": 8500,
       "Type": "Consul"
     }

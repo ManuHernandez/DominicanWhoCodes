@@ -29,7 +29,7 @@
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>05c12b29-0cb5-458a-8ee0-9e0583d52043</UserSecretsId>
     <DockerComposeProjectPath>..\DominicanWhoCodes.Blazor\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>

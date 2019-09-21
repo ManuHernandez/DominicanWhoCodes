@@ -1,6 +1,26 @@
 version: '3.4'
 
 services:
+  identity:
+    image: identity
+    build:
+      context: .
+      dockerfile: ..\DominicanWhoCodes.Identity.API\Dockerfile
+    container_name: Identity
+    depends_on: 
+      - db
+
+  identitygateway:
+    image: identitygateway
+    build:
+      context: .
+      dockerfile: ..\DominicanWhoCodes.Identity.Gateway\Dockerfile
+    container_name: identitygateway
+    depends_on:
+      - db
+  db:
+    image: mcr.microsoft.com/mssql/server
+    container_name: dominicanWhoCodesSql
   consul:
     image: consul:latest
     command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
