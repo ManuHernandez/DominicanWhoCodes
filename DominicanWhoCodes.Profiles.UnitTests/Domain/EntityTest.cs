@@ -15,8 +15,8 @@ namespace DominicanWhoCodes.Profiles.UnitTests.Domain
             //arrange
             var userId = UserId.FromGuid(Guid.NewGuid());
             //act
-            var user = new User(userId, "Manuel", "Hernández", "hernandezmanuel@lorenipsum.com");
-            var userUpdated = new User(userId, "Angel", "Garcia", "agarcia@lorenipsum.com");
+            var user = new User(userId, "Manuel", "Hernández", "hernandezmanuel@lorenipsum.com", "Software Developer");
+            var userUpdated = new User(userId, "Angel", "Garcia", "agarcia@lorenipsum.com", "Staff Software Developer");
             //assert
             bool isTrue = user.Equals(userUpdated) && user == userUpdated
                 && user.GetHashCode() == userUpdated.GetHashCode();
@@ -30,9 +30,10 @@ namespace DominicanWhoCodes.Profiles.UnitTests.Domain
             var userId = UserId.FromGuid(Guid.NewGuid());
             var updateUserId = UserId.FromGuid(Guid.NewGuid());
             //act
-            var user = new User(userId, "Manuel", "Hernández", "hernandezmanuel@lorenipsum.com");
+            var user = new User(userId, "Manuel", "Hernández", 
+                "hernandezmanuel@lorenipsum.com", "Software Developer");
             var userUpdated = new User(updateUserId, "Manuel", "Hernández",
-                "hernandezmanuel@lorenipsum.com");
+                "hernandezmanuel@lorenipsum.com", "Software Developer");
             //assert
             bool isTrue = !user.Equals(userUpdated) && user != userUpdated
                 && user.GetHashCode() != userUpdated.GetHashCode();
