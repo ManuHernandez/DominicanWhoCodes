@@ -29,6 +29,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
         public UserStatus CurrentStatus { get; private set; }
         public IReadOnlyCollection<SocialNetwork> SocialNetworks => _socialNetworks;
         public string Description { get; private set; }
+        public Photo CurrentPhoto { get; set; }
 
         public SocialNetwork AddSocialNetwork(Network contactNetwork, string url)
         {
@@ -43,6 +44,28 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
             else _socialNetworks.Add(newSocialNetwork);
 
             return newSocialNetwork;
+        }
+
+        public Photo UploadPhoto(string fileName, byte[] photoUpload)
+        {
+            var userId = UserId.FromGuid(Id);
+            var photoId = PhotoId.FromGuid(Guid.NewGuid());
+
+            if (CurrentPhoto == null) CurrentPhoto = new Photo(photoId, userId, fileName, photoUpload);
+            else CurrentPhoto.UpdatePhoto(fileName, photoUpload);
+
+            return CurrentPhoto;
+        }
+
+        public Photo UploadPhoto(string photoUrl)
+        {
+            var userId = UserId.FromGuid(Id);
+            var photoId = PhotoId.FromGuid(Guid.NewGuid());
+
+            if (CurrentPhoto == null) CurrentPhoto = new Photo(photoId, userId, photoUrl);
+            else CurrentPhoto.UpdatePhoto(photoUrl);
+
+            return CurrentPhoto;
         }
     }
 }
