@@ -1,6 +1,8 @@
 ﻿
 
+using MediatR;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DominicanWhoCodes.Shared.Domain
@@ -9,6 +11,7 @@ namespace DominicanWhoCodes.Shared.Domain
     {
         private int? _hashCode;
         private Guid _id;
+        private List<INotification> _domainEvents;
         public virtual Guid Id
         {
             get
@@ -21,6 +24,24 @@ namespace DominicanWhoCodes.Shared.Domain
                 _id = value;
             }
         }
+        public IReadOnlyCollection<INotification> DomainEvents => _domainEvents?.AsReadOnly();
+
+        public void AddDomainEvent(INotification @event)
+        {
+            _domainEvents = _domainEvents ?? new List<INotification>();
+            _domainEvents.Add(@event);
+        }
+
+        public void RemoveDomainEvent(INotification @event)
+        {
+            _domainEvents?.Remove(@event);
+        }
+
+        public void ClearDomainEvents()
+        {
+            _domainEvents?.Clear();
+        }
+
         public static bool operator ==(Entity<T> left, Entity<T> right) => Equals(left, right);
         public static bool operator !=(Entity<T> left, Entity<T> right) => !Equals(left, right);
         public override bool Equals(object other)

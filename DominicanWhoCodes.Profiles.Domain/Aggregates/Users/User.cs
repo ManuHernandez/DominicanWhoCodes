@@ -1,6 +1,7 @@
 ﻿
 namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
 {
+    using DominicanWhoCodes.Profiles.Domain.Aggregates.Users.Events;
     using DominicanWhoCodes.Shared.Domain;
     using System;
     using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
         public UserStatus CurrentStatus { get; private set; }
         public IReadOnlyCollection<SocialNetwork> SocialNetworks => _socialNetworks;
         public string Description { get; private set; }
-        public Photo CurrentPhoto { get; set; }
+        public Photo CurrentPhoto { get; private set; }
 
         public SocialNetwork AddSocialNetwork(Network contactNetwork, string url)
         {
@@ -53,6 +54,8 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
 
             if (CurrentPhoto == null) CurrentPhoto = new Photo(photoId, userId, fileName, photoUpload);
             else CurrentPhoto.UpdatePhoto(fileName, photoUpload);
+
+            AddDomainEvent(new UploadNewPhotoFromFileSystemDomainEvent(userId, fileName, photoUpload));
 
             return CurrentPhoto;
         }

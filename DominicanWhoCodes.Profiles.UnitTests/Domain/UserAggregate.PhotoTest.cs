@@ -1,8 +1,10 @@
 ﻿
 
 using DominicanWhoCodes.Profiles.Domain.Aggregates.Users;
+using DominicanWhoCodes.Profiles.Domain.Aggregates.Users.Events;
 using System;
 using System.IO;
+using System.Linq;
 using Xunit;
 
 namespace DominicanWhoCodes.Profiles.UnitTests.Domain
@@ -60,6 +62,21 @@ namespace DominicanWhoCodes.Profiles.UnitTests.Domain
             Photo currentPhoto = newUser.CurrentPhoto;
             bool isTrue = (photoAdded == photoUpdated) && (photoUpdated == currentPhoto);
             Assert.True(isTrue);
+        }
+
+        [Fact]
+        public void Upload_Photo_From_FileSystem_Should_Fire_Upload_New_Photo_Domain_Event()
+        {
+            //Act
+            var newUser = new User(_userId, _firstName, _lastName, _email, _description);
+            byte[] photoUpload = new byte[30 ^ 2];
+            string fileName = "fake.jpg";
+            //Arrange
+            Photo photoAdded = newUser.UploadPhoto(fileName, photoUpload);
+            //Assert
+            var domainEventExists = newUser.DomainEvents
+                .Any(e => e.GetType() == typeof(UploadNewPhotoFromFileSystemDomainEvent));
+            Assert.True(domainEventExists);
         }
     }
 }
