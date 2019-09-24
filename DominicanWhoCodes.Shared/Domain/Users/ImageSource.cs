@@ -1,4 +1,4 @@
-﻿namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
+﻿namespace DominicanWhoCodes.Shared.Domain.Users
 {
     public enum ImageSource
     {

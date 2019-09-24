@@ -1,4 +1,5 @@
 ﻿using DominicanWhoCodes.Shared.Domain;
+using DominicanWhoCodes.Shared.Domain.Users;
 using System.IO;
 
 namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users

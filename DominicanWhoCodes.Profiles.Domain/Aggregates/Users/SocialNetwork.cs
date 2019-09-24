@@ -1,6 +1,7 @@
 ﻿
-using System;
+
 using DominicanWhoCodes.Shared.Domain;
+using DominicanWhoCodes.Shared.Domain.Users;
 
 namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
 {

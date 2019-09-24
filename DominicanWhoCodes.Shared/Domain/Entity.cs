@@ -9,7 +9,6 @@ namespace DominicanWhoCodes.Shared.Domain
 {
     public abstract class Entity
     {
-        private int? _hashCode;
         private Guid _id;
         private List<INotification> _domainEvents;
         public virtual Guid Id
@@ -59,6 +58,6 @@ namespace DominicanWhoCodes.Shared.Domain
         }
 
         //Reference: (http://blogs.msdn.com/b/ericlippert/archive/2011/02/28/guidelines-and-rules-for-gethashcode.aspx)
-        public override int GetHashCode() => _hashCode ?? this.Id.GetHashCode() ^ 31;
+        public override int GetHashCode() => this.Id.GetHashCode() ^ 31;
     }
 }

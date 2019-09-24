@@ -3,6 +3,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
 {
     using DominicanWhoCodes.Profiles.Domain.Aggregates.Users.Events;
     using DominicanWhoCodes.Shared.Domain;
+    using DominicanWhoCodes.Shared.Domain.Users;
     using System;
     using System.Collections.Generic;
     using System.Linq;
