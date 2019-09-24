@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DominicanWhoCodes.Shared.Domain
 {
-    public abstract class Entity<T> where T: class
+    public abstract class Entity
     {
         private int? _hashCode;
         private Guid _id;
@@ -42,8 +42,8 @@ namespace DominicanWhoCodes.Shared.Domain
             _domainEvents?.Clear();
         }
 
-        public static bool operator ==(Entity<T> left, Entity<T> right) => Equals(left, right);
-        public static bool operator !=(Entity<T> left, Entity<T> right) => !Equals(left, right);
+        public static bool operator ==(Entity left, Entity right) => Equals(left, right);
+        public static bool operator !=(Entity left, Entity right) => !Equals(left, right);
         public override bool Equals(object other)
         {
             if (ReferenceEquals(null, other)) return false;
@@ -52,7 +52,7 @@ namespace DominicanWhoCodes.Shared.Domain
             if (this.GetType() != other.GetType())
                 return false;
 
-            if (this.Id != ((Entity<T>)other).Id)
+            if (this.Id != ((Entity)other).Id)
                 return false;
 
             return true;

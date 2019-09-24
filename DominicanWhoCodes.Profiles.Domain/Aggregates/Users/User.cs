@@ -7,7 +7,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
     using System.Collections.Generic;
     using System.Linq;
 
-    public class User : Entity<User>, IAggregateRoot
+    public class User : Entity, IAggregateRoot
     {
         private List<SocialNetwork> _socialNetworks;
      

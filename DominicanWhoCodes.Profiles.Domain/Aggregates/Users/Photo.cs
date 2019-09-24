@@ -3,7 +3,7 @@ using System.IO;
 
 namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
 {
-    public class Photo: Entity<PhotoId>
+    public class Photo: Entity
     {
         public Photo(PhotoId photoId, UserId userId, string url)
         {
