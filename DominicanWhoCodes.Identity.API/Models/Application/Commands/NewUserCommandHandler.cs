@@ -1,9 +1,13 @@
 ﻿
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using DominicanWhoCodes.Identity.API.Models.Application.Exceptions;
+using DominicanWhoCodes.Shared.Application.DTO;
+using DominicanWhoCodes.Shared.IntegrationEvents;
+using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
@@ -13,11 +17,13 @@ namespace DominicanWhoCodes.Identity.API.Models.Application.Commands
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IBus _bus;
         public NewUserCommandHandler(UserManager<User> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager, IBus bus)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            this._bus = bus;
         }
         public async Task<bool> Handle(NewUserCommand request, CancellationToken cancellationToken)
         {
@@ -25,12 +31,14 @@ namespace DominicanWhoCodes.Identity.API.Models.Application.Commands
 
             ValidateUserData(userEntity);
 
-            var result = await _userManager.CreateAsync(userEntity, request.NewUser.Password);
+            var result = await _userManager.CreateAsync(userEntity, request.Password);
 
             if (result.Succeeded)
             {
                 var roleName = await AddUserToDefaultRole();
                 await AddClaims(userEntity, roleName);
+                request.NewUser.Id = Guid.Parse(userEntity.Id);
+                await _bus.Publish(new CreateNewUserProfileIntegrationEvent(request.NewUser));
             }
             else
                 throw new UserPasswordInvalidException(result.Errors?

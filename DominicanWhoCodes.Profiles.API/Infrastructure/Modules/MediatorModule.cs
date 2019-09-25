@@ -4,12 +4,20 @@ using Autofac;
 using DominicanWhoCodes.Profiles.API.Application.Commands;
 using DominicanWhoCodes.Profiles.API.Application.DomainEvents;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using System.Reflection;
 
 namespace DominicanWhoCodes.Profiles.API.Infrastructure.Modules
 {
     public class MediatorModule : Autofac.Module
     {
+        public MediatorModule(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly)

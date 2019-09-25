@@ -19,6 +19,8 @@ using System.Collections.Generic;
 using DominicanWhoCodes.Shared.ServiceDiscovery;
 using System.Linq;
 using IdentityServer4.Hosting;
+using MassTransit;
+using RabbitMQ.Client;
 
 namespace DominicanWhoCodes.Identity.API
 {
@@ -44,7 +46,7 @@ namespace DominicanWhoCodes.Identity.API
 
             ConfigureAuth(services);
             ConfigureSwagger(services);
-
+            ConfigureBus(services);
             services.AddHealthChecks();
         }
 
@@ -69,7 +71,6 @@ namespace DominicanWhoCodes.Identity.API
             .ToList()
             .ForEach(item => item.Path = item.Path.Value.Replace("/connect", "/api"));
         }
-
         private void ConfigureSwagger(IServiceCollection services)
         {
             services.AddSwaggerGen(config =>
@@ -86,11 +87,27 @@ namespace DominicanWhoCodes.Identity.API
                 config.IncludeXmlComments(xmlPath);
             });
         }
-
         private void ConfigureConsul(IServiceCollection services)
         {
             var serviceCfg = Service.GetService(Configuration);
             services.RegisterConsulServices(serviceCfg);
+        }
+        private void ConfigureBus(IServiceCollection services)
+        {
+            services.AddMassTransit(m =>
+            {
+                m.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+                {
+                    var host = cfg.Host(Configuration["RabbitMQ:Host"], Configuration["RabbitMQ:VirtualHost"],
+                         cr =>
+                         {
+                             cr.Username(Configuration["RabbitMQ:UserName"]);
+                             cr.Password(Configuration["RabbitMQ:Password"]);
+                         });
+                    cfg.ExchangeType = ExchangeType.Fanout;
+                    
+                }));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

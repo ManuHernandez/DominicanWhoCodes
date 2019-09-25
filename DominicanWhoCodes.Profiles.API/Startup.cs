@@ -5,10 +5,15 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using DominicanWhoCodes.Profiles.API.Application.IntegrationEvents.Consumers;
 using DominicanWhoCodes.Profiles.API.Infrastructure.Modules;
 using DominicanWhoCodes.Profiles.Infrastructure;
 using DominicanWhoCodes.Shared.EventBus;
 using DominicanWhoCodes.Shared.ServiceDiscovery;
+using GreenPipes;
+using MassTransit;
+using MassTransit.RabbitMqTransport;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -18,6 +23,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using RabbitMQ.Client;
 
 namespace DominicanWhoCodes.Profiles.API
 {
@@ -29,6 +35,7 @@ namespace DominicanWhoCodes.Profiles.API
         }
 
         public IConfiguration Configuration { get; }
+        public IBus BusManager { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -41,7 +48,8 @@ namespace DominicanWhoCodes.Profiles.API
             RegisterDbContext(services);
             RegisterCors(services);
             RegisterSwagger(services);
-            return InitializeAutofac(services);
+            var provider = InitializeAutofac(services);
+            return provider;
         }
 
         private void RegisterConsul(IServiceCollection services)
@@ -97,11 +105,11 @@ namespace DominicanWhoCodes.Profiles.API
         {
             var container = new ContainerBuilder();
             container.Populate(services);
-            container.RegisterModule(new MediatorModule());
+            container.RegisterModule(new MediatorModule(Configuration));
             container.RegisterModule(new ApplicationModule(Configuration));
-            return new AutofacServiceProvider(container.Build());
+            var provider = new AutofacServiceProvider(container.Build());
+            return provider;
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {

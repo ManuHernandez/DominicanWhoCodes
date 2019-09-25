@@ -12,17 +12,6 @@ namespace DominicanWhoCodes.Shared.Application.DTO
         public string Email { get; set; }
         public SocialNetworkDto[] SocialNetworks { get; set; }
         public PhotoDto Photo { get; set; }
-        public class SocialNetworkDto
-        {
-            public Network Network { get; set; }
-            public string Url { get; set; }
-        }
-        public class PhotoDto
-        {
-            public ImageSource ImageSource { get; set; }
-            public string Url { get; set; }
-            public byte[] ContentFile { get; set; }
-            public string FileName { get; set; }
-        }
     }
+
 }

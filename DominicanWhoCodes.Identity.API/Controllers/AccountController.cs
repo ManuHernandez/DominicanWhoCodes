@@ -1,7 +1,8 @@
 ﻿
 using DominicanWhoCodes.Identity.API.Models.Application.Commands;
-using DominicanWhoCodes.Identity.API.Models.Application.DTO;
+using DominicanWhoCodes.Identity.API.Models.Application.InputModels;
 using DominicanWhoCodes.Identity.API.Models.Application.Exceptions;
+using DominicanWhoCodes.Shared.Application.DTO;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -29,7 +30,8 @@ namespace DominicanWhoCodes.Identity.API.Controllers
         {
             try
             {
-                var userCreatedResult = await _mediator.Send(new NewUserCommand(newUser));
+                var userProfileDto = newUser.ConvertToUserProfile();
+                var userCreatedResult = await _mediator.Send(new NewUserCommand(userProfileDto, newUser.Password));
 
                 return Ok();
             }
