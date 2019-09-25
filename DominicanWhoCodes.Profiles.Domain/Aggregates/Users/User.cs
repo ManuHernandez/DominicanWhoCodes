@@ -11,7 +11,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
     public class User : Entity, IAggregateRoot
     {
         private List<SocialNetwork> _socialNetworks;
-     
+        private User() { }
         public User(UserId userId, string firstName, string lastName, string email,
             string description)
         {
@@ -21,6 +21,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
             Email = FieldChecker.NotEmpty(email, nameof(email));
             CurrentStatus = UserStatus.Pending;
             CreationDate = DateTime.UtcNow;
+            UserId = userId;
             Description = description;
         }
 
@@ -30,9 +31,10 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
         public DateTime CreationDate { get; private set; }
         public UserStatus CurrentStatus { get; private set; }
         public IReadOnlyCollection<SocialNetwork> SocialNetworks => _socialNetworks;
-        public string Description { get; private set; }
-        public Photo CurrentPhoto { get; private set; }
 
+        public UserId UserId { get; private set; }
+        public string Description { get; private set; }
+        public virtual Photo CurrentPhoto { get; private set; }
         public SocialNetwork AddSocialNetwork(Network contactNetwork, string url)
         {
             var socialNetworkId = SocialNetworkId.FromGuid(Guid.NewGuid());
@@ -51,7 +53,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
         public Photo UploadPhoto(string fileName, byte[] photoUpload)
         {
             var userId = UserId.FromGuid(Id);
-            var photoId = PhotoId.FromGuid(Guid.NewGuid());
+            var photoId = Users.PhotoId.FromGuid(Guid.NewGuid());
 
             if (CurrentPhoto == null) CurrentPhoto = new Photo(photoId, userId, fileName, photoUpload);
             else CurrentPhoto.UpdatePhoto(fileName, photoUpload);
@@ -64,7 +66,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
         public Photo UploadPhoto(string photoUrl)
         {
             var userId = UserId.FromGuid(Id);
-            var photoId = PhotoId.FromGuid(Guid.NewGuid());
+            var photoId = Users.PhotoId.FromGuid(Guid.NewGuid());
 
             if (CurrentPhoto == null) CurrentPhoto = new Photo(photoId, userId, photoUrl);
             else CurrentPhoto.UpdatePhoto(photoUrl);

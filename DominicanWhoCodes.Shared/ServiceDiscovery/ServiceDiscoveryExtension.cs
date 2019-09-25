@@ -19,7 +19,7 @@ namespace DominicanWhoCodes.Shared.ServiceDiscovery
             var consulClient = CreateConsulClient(serviceConfig);
 
             services.AddSingleton(serviceConfig);
-            services.AddSingleton<IHostedService, ServiceDiscoveryHostedService>();
+            services.AddHostedService<ServiceDiscoveryHostedService>();
             services.AddSingleton<IConsulClient, ConsulClient>(p => consulClient);
         }
 

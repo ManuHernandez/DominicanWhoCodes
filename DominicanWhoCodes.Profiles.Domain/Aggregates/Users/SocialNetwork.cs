@@ -7,6 +7,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
 {
     public class SocialNetwork : Entity
     {
+        private SocialNetwork() { }
         public SocialNetwork(SocialNetworkId socialNetworkId, UserId userId, string url,
             Network network)
         {
@@ -16,11 +17,10 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
             Url = FieldChecker.NotEmpty(url, nameof(url));
         }
 
-        public SocialNetworkId SocialNetworkId { get; }
-        public UserId UserId { get; }
-        public Network Network { get; }
+        public SocialNetworkId SocialNetworkId { get; private set; }
+        public UserId UserId { get; private set; }
+        public Network Network { get; private set; }
         public string Url { get; private set; }
-        public User User { get; private set; }
         internal SocialNetwork UpdateUrl(string url)
         {
             this.Url = FieldChecker.NotEmpty(url, nameof(url));

@@ -6,6 +6,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
 {
     public class Photo: Entity
     {
+        private Photo() { }
         public Photo(PhotoId photoId, UserId userId, string url)
         {
             PhotoId = photoId;
@@ -28,7 +29,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
         public string Url { get; private set; }
         public ImageSource ImageSource { get; private set; }
         public string FileName { get; private set; }
-
+        public virtual User User { get; private set; }
         internal void UpdatePhoto(string fileName, byte[] photoUpload)
         {
             this.FileName = FieldChecker.NotEmpty(fileName);

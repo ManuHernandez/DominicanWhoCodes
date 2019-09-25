@@ -16,8 +16,13 @@ namespace DominicanWhoCodes.Profiles.Infrastructure
         private readonly IMediator _mediator;
         public const string DEFAULT_SCHEMA = "UsersProfile";
         public UserProfileContext(DbContextOptions<UserProfileContext> dbContextOptions, IMediator mediator)
+            :base(dbContextOptions)
         {
             this._mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
+
+        private UserProfileContext(DbContextOptions<UserProfileContext> dbContextOptions) : base(dbContextOptions)
+        {
         }
 
         public DbSet<User> Users { get; set; }

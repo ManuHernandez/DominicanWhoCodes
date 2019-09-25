@@ -14,6 +14,11 @@ namespace DominicanWhoCodes.Shared.Domain
             Value = value;
         }
 
+        public Id()
+        {
+            Value = Guid.NewGuid();
+        }
+
         public override string ToString() => Value.ToString();
     }
 }
