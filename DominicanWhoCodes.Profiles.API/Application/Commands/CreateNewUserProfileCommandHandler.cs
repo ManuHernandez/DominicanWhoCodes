@@ -7,6 +7,8 @@ using DominicanWhoCodes.Profiles.API.Application.Exceptions;
 using DominicanWhoCodes.Profiles.Domain.Aggregates.Users;
 using DominicanWhoCodes.Shared.Application.DTO;
 using DominicanWhoCodes.Shared.Domain.Users;
+using DominicanWhoCodes.Shared.IntegrationEvents.Storage;
+using MassTransit;
 using MediatR;
 
 namespace DominicanWhoCodes.Profiles.API.Application.Commands
@@ -14,10 +16,12 @@ namespace DominicanWhoCodes.Profiles.API.Application.Commands
     public class CreateNewUserProfileCommandHandler : IRequestHandler<CreateNewUserProfileCommand, bool>
     {
         private readonly IUserRepository _userRepository;
+        private readonly IBus _bus;
         private User _userAggregate;
-        public CreateNewUserProfileCommandHandler(IUserRepository userRepository)
+        public CreateNewUserProfileCommandHandler(IUserRepository userRepository, IBus bus)
         {
             this._userRepository = userRepository;
+            this._bus = bus;
         }
         public async Task<bool> Handle(CreateNewUserProfileCommand request, CancellationToken cancellationToken)
         {
@@ -31,6 +35,7 @@ namespace DominicanWhoCodes.Profiles.API.Application.Commands
             AddUserPhoto(newUserDto);
 
             _userRepository.Add(_userAggregate);
+           
             await _userRepository.UnitOfWork.CommitChanges(cancellationToken);
 
             return true;
@@ -45,13 +50,17 @@ namespace DominicanWhoCodes.Profiles.API.Application.Commands
 
         private void AddUserPhoto(UserProfileDto newUserDto)
         {
-            if (newUserDto.Photo == null)
-                throw new PhotoIsRequiredException("The profile photo is required.");
+            if (newUserDto.Photo == null) return;
 
             if (newUserDto.Photo.ImageSource == ImageSource.Upload)
+            {
                 _userAggregate.UploadPhoto(newUserDto.Photo.FileName, newUserDto.Photo.ContentFile);
+                _bus.Publish(new UploadUserProfilePhotoIntegrationEvent(newUserDto.Photo.FileName, 
+                    newUserDto.Photo.ContentFile, newUserDto.Id));
+            }
             else
-                _userAggregate.UploadPhoto(newUserDto.Photo.Url);
+                if (!string.IsNullOrWhiteSpace(newUserDto.Photo.Url))
+                    _userAggregate.UploadPhoto(newUserDto.Photo.Url);
         }
     }
 }

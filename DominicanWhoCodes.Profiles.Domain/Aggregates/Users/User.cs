@@ -10,8 +10,11 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
 
     public class User : Entity, IAggregateRoot
     {
-        private List<SocialNetwork> _socialNetworks;
-        private User() { }
+        private HashSet<SocialNetwork> _socialNetworks;
+        private User()
+        {
+            _socialNetworks = new HashSet<SocialNetwork>();
+        }
         public User(UserId userId, string firstName, string lastName, string email,
             string description)
         {
@@ -41,7 +44,7 @@ namespace DominicanWhoCodes.Profiles.Domain.Aggregates.Users
             var userId = UserId.FromGuid(Id);
             var newSocialNetwork = new SocialNetwork(socialNetworkId, userId, url, contactNetwork);
 
-            if (_socialNetworks == null) _socialNetworks = new List<SocialNetwork>();
+            if (_socialNetworks == null) _socialNetworks = new HashSet<SocialNetwork>();
             var socialNetworkFound = _socialNetworks.FirstOrDefault(e => e.Network == contactNetwork);
 
             if (socialNetworkFound != null) newSocialNetwork = socialNetworkFound.UpdateUrl(url);

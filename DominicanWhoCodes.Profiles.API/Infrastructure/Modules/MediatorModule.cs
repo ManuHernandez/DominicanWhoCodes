@@ -24,9 +24,9 @@ namespace DominicanWhoCodes.Profiles.API.Infrastructure.Modules
                .AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(typeof(CreateNewUserProfileCommand).GetTypeInfo().Assembly)
                 .AsClosedTypesOf(typeof(IRequestHandler<,>));
-            builder.RegisterAssemblyTypes(typeof(UploadNewPhotoFromFileSystemDomainEventHandler)
-                .GetTypeInfo().Assembly)
-                .AsClosedTypesOf(typeof(IRequestHandler<,>));
+            builder.RegisterAssemblyTypes(typeof(UploadNewPhotoFromFileSystemDomainEventHandler).GetTypeInfo().Assembly)
+                .AsClosedTypesOf(typeof(INotificationHandler<>));
+
             builder.Register<ServiceFactory>(context =>
             {
                 var componentContext = context.Resolve<IComponentContext>();

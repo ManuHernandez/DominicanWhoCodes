@@ -23,9 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Profiles.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Profiles.UnitTests", "..\DominicanWhoCodes.Profiles.UnitTests\DominicanWhoCodes.Profiles.UnitTests.csproj", "{5556A491-61CB-467D-8500-FF57C3DD0EE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DominicanWhoCodes.Profiles.Infrastructure", "..\DominicanWhoCodes.Profiles.Infrastructure\DominicanWhoCodes.Profiles.Infrastructure.csproj", "{3523A0EB-CE5D-406B-AF8A-497A1FEC39C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Profiles.Infrastructure", "..\DominicanWhoCodes.Profiles.Infrastructure\DominicanWhoCodes.Profiles.Infrastructure.csproj", "{3523A0EB-CE5D-406B-AF8A-497A1FEC39C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DominicanWhoCodes.Profiles.API", "..\DominicanWhoCodes.Profiles.API\DominicanWhoCodes.Profiles.API.csproj", "{51F2940F-3CAF-4C4A-8AA0-73F564370759}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Profiles.API", "..\DominicanWhoCodes.Profiles.API\DominicanWhoCodes.Profiles.API.csproj", "{51F2940F-3CAF-4C4A-8AA0-73F564370759}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ObjectStorage", "ObjectStorage", "{069F7347-004E-4192-981D-A606036626C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DominicanWhoCodes.ObjectStorage.MinioAPI", "..\DominicanWhoCodes.ObjectStorage.MinioAPI\DominicanWhoCodes.ObjectStorage.MinioAPI.csproj", "{9FA52644-6FED-41FA-836F-D963E52C0E14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,10 @@ Global
 		{51F2940F-3CAF-4C4A-8AA0-73F564370759}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51F2940F-3CAF-4C4A-8AA0-73F564370759}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51F2940F-3CAF-4C4A-8AA0-73F564370759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FA52644-6FED-41FA-836F-D963E52C0E14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FA52644-6FED-41FA-836F-D963E52C0E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FA52644-6FED-41FA-836F-D963E52C0E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FA52644-6FED-41FA-836F-D963E52C0E14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +89,7 @@ Global
 		{5556A491-61CB-467D-8500-FF57C3DD0EE6} = {0672892F-7DE0-4DFF-BFB8-EC76C8303EB5}
 		{3523A0EB-CE5D-406B-AF8A-497A1FEC39C8} = {0672892F-7DE0-4DFF-BFB8-EC76C8303EB5}
 		{51F2940F-3CAF-4C4A-8AA0-73F564370759} = {0672892F-7DE0-4DFF-BFB8-EC76C8303EB5}
+		{9FA52644-6FED-41FA-836F-D963E52C0E14} = {069F7347-004E-4192-981D-A606036626C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD5FF2AA-4D1E-4667-9E3C-941EC2298B01}

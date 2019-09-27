@@ -3,6 +3,7 @@
 using System.Threading.Tasks;
 using DominicanWhoCodes.Profiles.Domain.Aggregates.Users;
 using DominicanWhoCodes.Shared.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace DominicanWhoCodes.Profiles.Infrastructure.Repositories
 {
@@ -22,15 +23,12 @@ namespace DominicanWhoCodes.Profiles.Infrastructure.Repositories
 
         public async Task<User> GetAsync(UserId userId)
         {
-            var user = await _context.Users.FindAsync(userId.Value);
-            if (user == null) return null;
+            var user = await _context.Users
+                .Include(e => e.SocialNetworks)
+                .Include(e => e.CurrentPhoto)
+                .FirstOrDefaultAsync(e => e.Id == userId.Value);
 
-            await _context.Entry(user)
-                .Collection(u => u.SocialNetworks)
-                .LoadAsync();
-            await _context.Entry(user)
-                .Reference(u => u.CurrentPhoto)
-                .LoadAsync();
+            if (user == null) return null;
 
             return user;
         }
