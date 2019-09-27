@@ -129,7 +129,17 @@ namespace DominicanWhoCodes.Profiles.API
                 config.RoutePrefix = "";
             });
             app.UseHttpsRedirection();
+            MigrateDb(app);
             app.UseMvc();
+        }
+
+        public void MigrateDb(IApplicationBuilder app)
+        {
+            using (var dbService = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = dbService.ServiceProvider.GetService<UserProfileContext>();
+                if (dbContext != null) dbContext.Database.Migrate();
+            }
         }
     }
 }

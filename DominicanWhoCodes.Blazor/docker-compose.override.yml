@@ -9,6 +9,10 @@ services:
       - ServiceConfig__ServiceName=identity
       - ServiceConfig__ServiceId=identity-v1
       - ConnectionStrings__IdentityDb=Server=db;Database=DominicanWhoCodesIdentityDb;User=sa;Password=dominicanWhoCodes(!)App2019;
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__VirtualHost=/
+      - RabbitMQ__UserName=admin
+      - RabbitMQ__Password=admin
     ports:
       - "8081:80"
 
@@ -17,6 +21,41 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "8082:80"
+
+  profiles:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ServiceConfig__ServiceDiscoveryAddress=http://consul:8500
+      - ServiceConfig__ServiceAddress=http://profiles:80
+      - ServiceConfig__ServiceName=profiles-v1
+      - ServiceConfig__ServiceId=profiles-v1
+      - ConnectionStrings__UserProfileDb=Server=db;Database=DominicanWhoCodesProfileDb;User=sa;Password=dominicanWhoCodes(!)App2019;
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__VirtualHost=/
+      - RabbitMQ__UserName=admin
+      - RabbitMQ__Password=admin
+    ports:
+      - "8083:80"
+
+  minioapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ServiceConfig__ServiceDiscoveryAddress=http://consul:8500
+      - ServiceConfig__ServiceAddress=http://minioAPI:80
+      - ServiceConfig__ServiceName=minioAPI-v1
+      - ServiceConfig__ServiceId=minioAPI-v1
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__VirtualHost=/
+      - RabbitMQ__UserName=admin
+      - RabbitMQ__Password=admin
+      - MinioConfiguration__Server=minio:9000
+      - MinioConfiguration__AccessKey=AKIAIOSFODNN7EXAMPLE
+      - MinioConfiguration__SecretKey=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+      - MinioConfiguration__UserProfileBucketName=dominicanwhocode.profilephotos
+      - MinioConfiguration__WithSSL=false
+    ports:
+      - "8084:80"
+
   db:
     environment:
       SA_PASSWORD: dominicanWhoCodes(!)App2019
@@ -36,4 +75,12 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
+
+  minio:
+    environment:
+      MINIO_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE
+      MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    ports:
+      - "9003:9000"
+    
 

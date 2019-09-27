@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes", "DominicanWhoCodes.Blazor\DominicanWhoCodes.csproj", "{B823C736-FC7F-4CE0-803E-9C84873E91A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{74267283-A4CF-4D6C-8D32-251067A9DAFE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Identity.API", "DominicanWhoCodes.Identity.API\DominicanWhoCodes.Identity.API.csproj", "{80FAB7C8-E387-4804-97E9-40A6778FED01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{DE698D29-B4F4-44BA-9253-ADDD6021F12F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Shared", "DominicanWhoCodes.Shared\DominicanWhoCodes.Shared.csproj", "{AC2B2DBE-81A9-4EE3-BA57-6CF22AC338F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Identity.Gateway", "DominicanWhoCodes.Identity.Gateway\DominicanWhoCodes.Identity.Gateway.csproj", "{DF391EDF-CD89-44E3-A93F-48B2376BFFE6}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "DominicanWhoCodes.Blazor\docker-compose.dcproj", "{F7A1EB7C-DDBF-4690-A8EA-1379D6517A91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Profiles", "Profiles", "{0672892F-7DE0-4DFF-BFB8-EC76C8303EB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Profiles.Domain", "DominicanWhoCodes.Profiles.Domain\DominicanWhoCodes.Profiles.Domain.csproj", "{CD5ED2DB-7EE4-4197-92C2-E8F97F882A0A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Profiles.UnitTests", "DominicanWhoCodes.Profiles.UnitTests\DominicanWhoCodes.Profiles.UnitTests.csproj", "{5556A491-61CB-467D-8500-FF57C3DD0EE6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Profiles.Infrastructure", "DominicanWhoCodes.Profiles.Infrastructure\DominicanWhoCodes.Profiles.Infrastructure.csproj", "{3523A0EB-CE5D-406B-AF8A-497A1FEC39C8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.Profiles.API", "DominicanWhoCodes.Profiles.API\DominicanWhoCodes.Profiles.API.csproj", "{51F2940F-3CAF-4C4A-8AA0-73F564370759}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ObjectStorage", "ObjectStorage", "{069F7347-004E-4192-981D-A606036626C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominicanWhoCodes.ObjectStorage.MinioAPI", "DominicanWhoCodes.ObjectStorage.MinioAPI\DominicanWhoCodes.ObjectStorage.MinioAPI.csproj", "{9FA52644-6FED-41FA-836F-D963E52C0E14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B823C736-FC7F-4CE0-803E-9C84873E91A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B823C736-FC7F-4CE0-803E-9C84873E91A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B823C736-FC7F-4CE0-803E-9C84873E91A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B823C736-FC7F-4CE0-803E-9C84873E91A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80FAB7C8-E387-4804-97E9-40A6778FED01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80FAB7C8-E387-4804-97E9-40A6778FED01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80FAB7C8-E387-4804-97E9-40A6778FED01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80FAB7C8-E387-4804-97E9-40A6778FED01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC2B2DBE-81A9-4EE3-BA57-6CF22AC338F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC2B2DBE-81A9-4EE3-BA57-6CF22AC338F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC2B2DBE-81A9-4EE3-BA57-6CF22AC338F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC2B2DBE-81A9-4EE3-BA57-6CF22AC338F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF391EDF-CD89-44E3-A93F-48B2376BFFE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF391EDF-CD89-44E3-A93F-48B2376BFFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF391EDF-CD89-44E3-A93F-48B2376BFFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF391EDF-CD89-44E3-A93F-48B2376BFFE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A1EB7C-DDBF-4690-A8EA-1379D6517A91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A1EB7C-DDBF-4690-A8EA-1379D6517A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A1EB7C-DDBF-4690-A8EA-1379D6517A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A1EB7C-DDBF-4690-A8EA-1379D6517A91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD5ED2DB-7EE4-4197-92C2-E8F97F882A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD5ED2DB-7EE4-4197-92C2-E8F97F882A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD5ED2DB-7EE4-4197-92C2-E8F97F882A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD5ED2DB-7EE4-4197-92C2-E8F97F882A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5556A491-61CB-467D-8500-FF57C3DD0EE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5556A491-61CB-467D-8500-FF57C3DD0EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5556A491-61CB-467D-8500-FF57C3DD0EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5556A491-61CB-467D-8500-FF57C3DD0EE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3523A0EB-CE5D-406B-AF8A-497A1FEC39C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3523A0EB-CE5D-406B-AF8A-497A1FEC39C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3523A0EB-CE5D-406B-AF8A-497A1FEC39C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3523A0EB-CE5D-406B-AF8A-497A1FEC39C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51F2940F-3CAF-4C4A-8AA0-73F564370759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F2940F-3CAF-4C4A-8AA0-73F564370759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51F2940F-3CAF-4C4A-8AA0-73F564370759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51F2940F-3CAF-4C4A-8AA0-73F564370759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FA52644-6FED-41FA-836F-D963E52C0E14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FA52644-6FED-41FA-836F-D963E52C0E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FA52644-6FED-41FA-836F-D963E52C0E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FA52644-6FED-41FA-836F-D963E52C0E14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{80FAB7C8-E387-4804-97E9-40A6778FED01} = {74267283-A4CF-4D6C-8D32-251067A9DAFE}
+		{AC2B2DBE-81A9-4EE3-BA57-6CF22AC338F9} = {DE698D29-B4F4-44BA-9253-ADDD6021F12F}
+		{DF391EDF-CD89-44E3-A93F-48B2376BFFE6} = {74267283-A4CF-4D6C-8D32-251067A9DAFE}
+		{CD5ED2DB-7EE4-4197-92C2-E8F97F882A0A} = {0672892F-7DE0-4DFF-BFB8-EC76C8303EB5}
+		{5556A491-61CB-467D-8500-FF57C3DD0EE6} = {0672892F-7DE0-4DFF-BFB8-EC76C8303EB5}
+		{3523A0EB-CE5D-406B-AF8A-497A1FEC39C8} = {0672892F-7DE0-4DFF-BFB8-EC76C8303EB5}
+		{51F2940F-3CAF-4C4A-8AA0-73F564370759} = {0672892F-7DE0-4DFF-BFB8-EC76C8303EB5}
+		{9FA52644-6FED-41FA-836F-D963E52C0E14} = {069F7347-004E-4192-981D-A606036626C3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD5FF2AA-4D1E-4667-9E3C-941EC2298B01}
+	EndGlobalSection
+EndGlobal

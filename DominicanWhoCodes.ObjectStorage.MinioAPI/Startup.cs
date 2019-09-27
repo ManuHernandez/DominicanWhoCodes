@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using DominicanWhoCodes.ObjectStorage.MinioAPI.Models.Application.Command;
 using DominicanWhoCodes.ObjectStorage.MinioAPI.Models.Application.IntegrationEvents.Consumers;
 using DominicanWhoCodes.Shared.EventBus;
+using DominicanWhoCodes.Shared.ServiceDiscovery;
 using GreenPipes;
 using MassTransit;
 using MassTransit.AutofacIntegration;
@@ -34,10 +35,16 @@ namespace DominicanWhoCodes.ObjectStorage.MinioAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddHostedService<BusService>();
+            RegisterConsul(services);
             ConfigureMinioClient(services);
             return InitializeAutofac(services);
         }
 
+        private void RegisterConsul(IServiceCollection services)
+        {
+            var serviceCfg = Service.GetService(Configuration);
+            services.RegisterConsulServices(serviceCfg);
+        }
         private void ConfigureMinioClient(IServiceCollection services)
         {
             string server = Configuration["MinioConfiguration:Server"];
