@@ -4,7 +4,7 @@ using System;
 
 namespace DominicanWhoCodes.Shared.EventBus
 {
-    public class IntegrationEvent
+    public abstract class IntegrationEvent
     {
         public IntegrationEvent()
         {
