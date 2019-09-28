@@ -1,7 +1,6 @@
 ﻿
 
 using DominicanWhoCodes.Profiles.Domain.Aggregates.Users;
-using DominicanWhoCodes.Shared.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;

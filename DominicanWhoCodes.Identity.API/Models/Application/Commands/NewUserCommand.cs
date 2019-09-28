@@ -1,7 +1,6 @@
 ﻿
 
-using DominicanWhoCodes.Identity.API.Models.Application.InputModels;
-using DominicanWhoCodes.Shared.Application.DTO;
+using DominicanWhoCodes.Identity.API.Models.Application.DTO;
 using MediatR;
 
 namespace DominicanWhoCodes.Identity.API.Models.Application.Commands

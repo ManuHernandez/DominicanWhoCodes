@@ -1,8 +1,6 @@
 ﻿
 
-using DominicanWhoCodes.Shared.Domain.Users;
-
-namespace DominicanWhoCodes.Shared.Application.DTO
+namespace DominicanWhoCodes.Identity.API.Models.Application.DTO
 {
     public class PhotoDto
     {

@@ -1,5 +1,4 @@
 ﻿using DominicanWhoCodes.ObjectStorage.MinioAPI.Models.Application.Command;
-using DominicanWhoCodes.Shared.IntegrationEvents.Storage;
 using MassTransit;
 using MediatR;
 using System.Threading.Tasks;

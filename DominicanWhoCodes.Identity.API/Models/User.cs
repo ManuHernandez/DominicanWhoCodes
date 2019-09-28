@@ -1,12 +1,11 @@
 ﻿using System;
 using DominicanWhoCodes.Identity.API.Models.Validators;
-using DominicanWhoCodes.Shared.Users;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Identity;
 
 namespace DominicanWhoCodes.Identity.API.Models
 {
-    public class User : IdentityUser, IUser
+    public class User : IdentityUser
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

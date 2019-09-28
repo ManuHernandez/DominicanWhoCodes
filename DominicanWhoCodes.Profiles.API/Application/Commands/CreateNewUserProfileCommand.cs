@@ -1,6 +1,5 @@
 ﻿
-
-using DominicanWhoCodes.Shared.Application.DTO;
+using DominicanWhoCodes.Profiles.API.Application.DTO;
 using MediatR;
 
 namespace DominicanWhoCodes.Profiles.API.Application.Commands

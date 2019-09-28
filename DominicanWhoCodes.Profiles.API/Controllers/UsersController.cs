@@ -1,6 +1,6 @@
 ﻿
 using DominicanWhoCodes.Profiles.API.Application.Commands;
-using DominicanWhoCodes.Shared.Application.DTO;
+using DominicanWhoCodes.Profiles.API.Application.DTO;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;

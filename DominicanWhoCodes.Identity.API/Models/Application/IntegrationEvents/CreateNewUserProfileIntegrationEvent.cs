@@ -1,7 +1,7 @@
-﻿using DominicanWhoCodes.Shared.Application.DTO;
+﻿using DominicanWhoCodes.Identity.API.Models.Application.DTO;
 using DominicanWhoCodes.Shared.EventBus;
 
-namespace DominicanWhoCodes.Shared.IntegrationEvents
+namespace DominicanWhoCodes.Identity.API.Models.Application.IntegrationEvents
 {
     public class CreateNewUserProfileIntegrationEvent : IntegrationEvent
     {

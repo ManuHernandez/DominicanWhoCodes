@@ -1,7 +1,6 @@
-﻿using DominicanWhoCodes.Shared.Domain.Users;
-using System;
+﻿using System;
 
-namespace DominicanWhoCodes.Shared.Application.DTO
+namespace DominicanWhoCodes.Profiles.API.Application.DTO
 {
     public class UserProfileDto
     {

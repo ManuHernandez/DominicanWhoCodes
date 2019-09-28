@@ -3,11 +3,9 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using DominicanWhoCodes.Profiles.API.Application.Exceptions;
+using DominicanWhoCodes.Profiles.API.Application.DTO;
+using DominicanWhoCodes.Profiles.API.Application.IntegrationEvents;
 using DominicanWhoCodes.Profiles.Domain.Aggregates.Users;
-using DominicanWhoCodes.Shared.Application.DTO;
-using DominicanWhoCodes.Shared.Domain.Users;
-using DominicanWhoCodes.Shared.IntegrationEvents.Storage;
 using MassTransit;
 using MediatR;
 

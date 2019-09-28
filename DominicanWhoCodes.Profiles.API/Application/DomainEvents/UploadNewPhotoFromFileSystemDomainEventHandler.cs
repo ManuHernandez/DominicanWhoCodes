@@ -3,8 +3,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using DominicanWhoCodes.Profiles.API.Application.Exceptions;
+using DominicanWhoCodes.Profiles.API.Application.IntegrationEvents;
 using DominicanWhoCodes.Profiles.Domain.Aggregates.Users.Events;
-using DominicanWhoCodes.Shared.IntegrationEvents.Storage;
 using MassTransit;
 using MediatR;
 

@@ -1,8 +1,8 @@
 ﻿
 
-using DominicanWhoCodes.Shared.Domain.Users;
+using DominicanWhoCodes.Profiles.Domain.Aggregates.Users;
 
-namespace DominicanWhoCodes.Shared.Application.DTO
+namespace DominicanWhoCodes.Profiles.API.Application.DTO
 {
     public class SocialNetworkDto
     {

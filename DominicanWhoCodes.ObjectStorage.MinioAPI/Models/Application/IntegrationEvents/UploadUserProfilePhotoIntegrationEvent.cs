@@ -1,7 +1,7 @@
 ﻿using DominicanWhoCodes.Shared.EventBus;
 using System;
 
-namespace DominicanWhoCodes.Shared.IntegrationEvents.Storage
+namespace DominicanWhoCodes.ObjectStorage.MinioAPI.Models.Application.IntegrationEvents
 {
     public class UploadUserProfilePhotoIntegrationEvent : IntegrationEvent
     {

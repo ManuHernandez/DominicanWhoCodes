@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using DominicanWhoCodes.Profiles.API.Application.Commands;
-using DominicanWhoCodes.Shared.IntegrationEvents;
 using MassTransit;
 using MediatR;
 

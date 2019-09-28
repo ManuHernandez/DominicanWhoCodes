@@ -1,14 +1,11 @@
 ﻿
-using DominicanWhoCodes.Shared.Application.DTO;
-using DominicanWhoCodes.Shared.Domain.Users;
-using Microsoft.AspNetCore.Http;
-using System.IO;
+
+using DominicanWhoCodes.Identity.API.Models.Application.DTO;
 
 namespace DominicanWhoCodes.Identity.API.Models.Application.InputModels
 {
     public class NewUserInputModel
     {
-        private IFormFile _uploadPhoto;
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
