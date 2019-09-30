@@ -1,6 +1,5 @@
 ﻿
 using System;
-using DominicanWhoCodes.Profiles.API.Application.DTO;
 using DominicanWhoCodes.Profiles.API.Application.IntegrationEvents.Definitions;
 using DominicanWhoCodes.Shared.EventBus;
 
@@ -8,11 +7,11 @@ namespace DominicanWhoCodes.Profiles.API.Application.IntegrationEvents
 {
     public class CreationUserFailedIntegrationEvent : IIntegrationEvent, UserCreationFailed
     {
-        public CreationUserFailedIntegrationEvent(UserSagaInstance user)
+        public CreationUserFailedIntegrationEvent(Guid userId)
         {
-            this.User = user;
+            Id = userId;
         }
-        public Guid Id => User.Id;
+        public Guid Id { get; private set; }
 
         public DateTime CreationDate => DateTime.Now;
 

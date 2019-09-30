@@ -8,6 +8,7 @@ using DominicanWhoCodes.Profiles.API.Application.IntegrationEvents;
 using DominicanWhoCodes.Profiles.Domain.Aggregates.Users;
 using MassTransit;
 using MediatR;
+using DominicanWhoCodes.Profiles.API.Application.Exceptions;
 
 namespace DominicanWhoCodes.Profiles.API.Application.Commands
 {
@@ -34,7 +35,8 @@ namespace DominicanWhoCodes.Profiles.API.Application.Commands
 
             _userRepository.Add(_userAggregate);
            
-            await _userRepository.UnitOfWork.CommitChanges(cancellationToken);
+            bool saved = await _userRepository.UnitOfWork.CommitChanges(cancellationToken);
+            if (!saved) throw new UserProfileIsNotSavedException("User profile was not saved");
 
             return true;
         }

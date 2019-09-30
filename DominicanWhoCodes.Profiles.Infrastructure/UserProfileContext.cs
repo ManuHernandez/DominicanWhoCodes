@@ -38,7 +38,7 @@ namespace DominicanWhoCodes.Profiles.Infrastructure
         {
             await _mediator.DispatchDomainEventsAsync(this);
             var result = await SaveChangesAsync(cancellationToken);
-            return true;
+            return result > 0;
         }
     }
 }
