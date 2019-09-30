@@ -1,21 +1,21 @@
 ﻿
 using System;
+using DominicanWhoCodes.Profiles.API.Application.DTO;
 using DominicanWhoCodes.Profiles.API.Application.IntegrationEvents.Definitions;
 using DominicanWhoCodes.Shared.EventBus;
 
 namespace DominicanWhoCodes.Profiles.API.Application.IntegrationEvents
 {
-    public class CreateNewUserProfileIntegrationEvent : IIntegrationEvent, UserSubmitted
+    public class CreationUserFailedIntegrationEvent : IIntegrationEvent, UserCreationFailed
     {
-        public CreateNewUserProfileIntegrationEvent(UserSagaInstance user)
+        public CreationUserFailedIntegrationEvent(UserSagaInstance user)
         {
-            User = user;
+            this.User = user;
         }
-
-        public UserSagaInstance User { get; private set; }
-
         public Guid Id => User.Id;
 
         public DateTime CreationDate => DateTime.Now;
+
+        public UserSagaInstance User { get; private set; }
     }
 }

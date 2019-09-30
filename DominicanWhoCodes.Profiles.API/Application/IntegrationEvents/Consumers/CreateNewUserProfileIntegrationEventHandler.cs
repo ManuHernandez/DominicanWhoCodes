@@ -14,7 +14,7 @@ namespace DominicanWhoCodes.Profiles.API.Application.IntegrationEvents.Consumers
         }
         public async Task Consume(ConsumeContext<CreateNewUserProfileIntegrationEvent> @event)
         {
-            await _mediator.Send(new CreateNewUserProfileCommand(@event.Message.UserProfile));
+            await _mediator.Send(new CreateNewUserProfileCommand(@event.Message.User));
         }
     }
 }

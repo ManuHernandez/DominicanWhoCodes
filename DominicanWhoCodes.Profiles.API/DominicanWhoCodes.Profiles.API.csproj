@@ -26,6 +26,9 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.0" />
     <PackageReference Include="MassTransit" Version="5.5.5" />
     <PackageReference Include="MassTransit.Autofac" Version="5.5.5" />
+    <PackageReference Include="MassTransit.Automatonymous" Version="5.5.5" />
+    <PackageReference Include="MassTransit.Automatonymous.Autofac" Version="5.5.5" />
+    <PackageReference Include="MassTransit.Automatonymous.Extensions.DependencyInjection" Version="5.5.5" />
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="5.5.5" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="5.5.5" />
     <PackageReference Include="MediatR" Version="7.0.0" />

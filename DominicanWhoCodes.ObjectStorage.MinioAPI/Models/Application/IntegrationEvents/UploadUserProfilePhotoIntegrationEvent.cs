@@ -3,7 +3,7 @@ using System;
 
 namespace DominicanWhoCodes.ObjectStorage.MinioAPI.Models.Application.IntegrationEvents
 {
-    public class UploadUserProfilePhotoIntegrationEvent : IntegrationEvent
+    public class UploadUserProfilePhotoIntegrationEvent : IIntegrationEvent
     {
         public UploadUserProfilePhotoIntegrationEvent(string fileName, byte[] photoContent, Guid userId)
         {
@@ -14,5 +14,9 @@ namespace DominicanWhoCodes.ObjectStorage.MinioAPI.Models.Application.Integratio
         public string FileName { get; private set; }
         public byte[] PhotoContent { get; private set; }
         public Guid UserId { get; private set; }
+
+        public Guid Id => UserId;
+
+        public DateTime CreationDate => DateTime.Now;
     }
 }

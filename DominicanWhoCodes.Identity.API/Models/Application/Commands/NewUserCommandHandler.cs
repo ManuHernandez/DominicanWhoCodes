@@ -4,8 +4,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using DominicanWhoCodes.Identity.API.Models.Application.EventContracts;
 using DominicanWhoCodes.Identity.API.Models.Application.Exceptions;
-using DominicanWhoCodes.Identity.API.Models.Application.IntegrationEvents;
 using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -37,7 +37,7 @@ namespace DominicanWhoCodes.Identity.API.Models.Application.Commands
                 var roleName = await AddUserToDefaultRole();
                 await AddClaims(userEntity, roleName);
                 request.NewUser.Id = Guid.Parse(userEntity.Id);
-                await _bus.Publish(new CreateNewUserProfileIntegrationEvent(request.NewUser));
+                await _bus.Publish<UserSubmitted>(new { UserProfile = request.NewUser });
             }
             else
                 throw new UserPasswordInvalidException(result.Errors?

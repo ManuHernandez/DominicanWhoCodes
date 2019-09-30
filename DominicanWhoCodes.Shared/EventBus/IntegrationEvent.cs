@@ -4,16 +4,11 @@ using System;
 
 namespace DominicanWhoCodes.Shared.EventBus
 {
-    public abstract class IntegrationEvent
+    public interface IIntegrationEvent
     {
-        public IntegrationEvent()
-        {
-            CreationDate = DateTime.UtcNow;
-            Id = Guid.NewGuid();
-        }
         [JsonProperty]
-        public Guid Id { get; private set; }
+        Guid Id { get; }
         [JsonProperty]
-        public DateTime CreationDate { get; set; }
+        DateTime CreationDate { get; }
     }
 }
